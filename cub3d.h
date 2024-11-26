@@ -20,9 +20,26 @@
 # include <stdbool.h>
 # include <stdio.h>
 
+/*MLX*/
+
+typedef struct mlx
+{
+	int		img_height;
+	int		img_width;
+	void	*ptr;
+	void	*mlx;
+	void	*img;
+	void	*win;
+	void	*img_player;
+	void	*img_floor;
+	void	*img_coll;
+	void	*img_exit;
+}			t_mlx;
+
 /* structs */
 typedef struct s_data_map
 {
+	int		angle;
 	int		fd;
 	char	*line;
 	bool	texture_color;
@@ -33,9 +50,15 @@ typedef struct s_data_map
 	char	*floor_color;
 	char	*ceiling_color;
 	char	**map;
-}			t_data_map;
+	int		x;
+	int		y;
+	int		player_x;
+	int		player_y;
+	t_mlx	*mlx;
+}	t_data_map;
 
 /* parse_map_bis.c */
+
 void	map_to_data(t_data_map *data_map);
 
 /* parse_map.c */
@@ -63,5 +86,9 @@ void		map_is_not_cub(char *str, t_data_map *data_map);
 void		ft_error(char *str, t_data_map *data_map);
 void		ft_putstr_fd(char *s, int fd);
 char		*ft_strdup(const char *s);
+
+/*Mlx_init.c*/
+int	ft_mlx_init(t_data_map *map);
+void	size_of_map(t_data_map *map);
 
 #endif

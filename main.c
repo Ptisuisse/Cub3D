@@ -18,6 +18,8 @@ static void	init_data(t_data_map **data_map)
 	if (!(*data_map))
 		ft_error("Malloc error\n", (*data_map));
 	(*data_map)->fd = 0;
+	(*data_map)->x = 0;
+	(*data_map)->y = 0;
 	(*data_map)->line = NULL;
 	(*data_map)->texture_color = false;
 	(*data_map)->no_texture = NULL;
@@ -68,25 +70,30 @@ static void	check_map(char **argv, t_data_map *data_map)
 
 int	main(int argc, char **argv)
 {
+	t_mlx	*mlx;
 	t_data_map	*data_map;
-	int			i;
+	//int			i;
 
+	mlx = malloc(sizeof(t_mlx));
 	data_map = NULL;
 	init_data(&data_map);
+	data_map->mlx = mlx;
 	check_argc(argc, data_map);
 	check_map(argv, data_map);
-	printf("%s\n", data_map->no_texture);
-	printf("%s\n", data_map->so_texture);
-	printf("%s\n", data_map->we_texture);
-	printf("%s\n", data_map->ea_texture);
-	printf("%s\n", data_map->floor_color);
-	printf("%s\n", data_map->ceiling_color);
-	i = 0;
-	while (data_map->map[i])
-	{
-		printf("%s\n", data_map->map[i]);
-		i++;
-	}
+	// printf("%s\n", data_map->no_texture);
+	// printf("%s\n", data_map->so_texture);
+	// printf("%s\n", data_map->we_texture);
+	// printf("%s\n", data_map->ea_texture);
+	// printf("%s\n", data_map->floor_color);
+	// printf("%s\n", data_map->ceiling_color);
+	// i = 0;
+	// while (data_map->map[i])
+	// {
+	// 	printf("%s\n", data_map->map[i]);
+	// 	i++;
+	// }
+	size_of_map(data_map);
+	ft_mlx_init(data_map);
 	ft_error(NULL, data_map);
 	return (0);
 }
