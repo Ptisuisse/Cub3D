@@ -29,6 +29,7 @@ static void	init_data(t_data_map **data_map)
 	(*data_map)->floor_color = NULL;
 	(*data_map)->ceiling_color = NULL;
 	(*data_map)->map = NULL;
+	(*data_map)->minimap = false;
 }
 
 static void	check_texture_color(t_data_map *data_map)
@@ -70,10 +71,10 @@ static void	check_map(char **argv, t_data_map *data_map)
 
 int	main(int argc, char **argv)
 {
-	t_mlx	*mlx;
+	t_mlx		*mlx;
 	t_data_map	*data_map;
-	//int			i;
 
+	// int			i;
 	mlx = malloc(sizeof(t_mlx));
 	data_map = NULL;
 	init_data(&data_map);

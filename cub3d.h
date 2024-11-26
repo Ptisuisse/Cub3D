@@ -17,6 +17,7 @@
 # include "minilibx-linux/mlx.h"
 # include "minilibx-linux/mlx_int.h"
 # include <fcntl.h>
+# include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
 
@@ -39,6 +40,7 @@ typedef struct mlx
 /* structs */
 typedef struct s_data_map
 {
+	bool	minimap;
 	int		angle;
 	int		fd;
 	char	*line;
@@ -55,11 +57,11 @@ typedef struct s_data_map
 	int		player_x;
 	int		player_y;
 	t_mlx	*mlx;
-}	t_data_map;
+}			t_data_map;
 
 /* parse_map_bis.c */
 
-void	map_to_data(t_data_map *data_map);
+void		map_to_data(t_data_map *data_map);
 
 /* parse_map.c */
 void		check_map_char(t_data_map *data_map);
@@ -88,7 +90,7 @@ void		ft_putstr_fd(char *s, int fd);
 char		*ft_strdup(const char *s);
 
 /*Mlx_init.c*/
-int	ft_mlx_init(t_data_map *map);
-void	size_of_map(t_data_map *map);
+int			ft_mlx_init(t_data_map *map);
+void		size_of_map(t_data_map *map);
 
 #endif
