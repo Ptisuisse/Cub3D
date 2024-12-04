@@ -72,15 +72,14 @@ void draw_fov_ray(t_mlx *mlx)
 	double ray_y;
 	double angle;
 	int	rays;
-    const double ANGLE_STEP = (PI/4) / 100;
-    double start_angle = mlx->ply->dir_angle - (PI/4) / 2;
+	double start_angle = mlx->ply->dir_angle - (PI/4) / 2;
 	angle = mlx->ply->dir_angle;
 	rays = 0;
 	while (rays < 100)
 	{
 		ray_x = mlx->ply->player_x + 0.5;
 		ray_y = mlx->ply->player_y + 0.5;
-		angle = start_angle + (rays * ANGLE_STEP);
+		angle = start_angle + (rays * (PI/4) / 100);
 		while (mlx->map->map[(int)ray_y][(int)ray_x] != '1')
 		{
 			mlx_pixel_put(mlx->ptr, mlx->win, ray_x * 10, ray_y * 10, 0xFF0000);
@@ -126,9 +125,10 @@ int	render_minimap(t_mlx *mlx)
 		x = 0;
 		while (mlx->map->map[y][x])
 		{
+			ft_put_pixel_player(mlx, mlx->ply->player_y, mlx->ply->player_x, 0xF00000);
 			if (mlx->map->map[y][x] == '1')
 				ft_put_pixel(mlx, y, x, 0x87CEEB);
-			else
+			else if (mlx->map->map[y][x] >= '0')
 				ft_put_pixel(mlx, y, x, 0xFFFFFF);
 			x++;
 		}
@@ -136,7 +136,6 @@ int	render_minimap(t_mlx *mlx)
 	}
 	mlx->map->minimap = true;
 	draw_fov_ray(mlx);
-	ft_put_pixel_player(mlx, mlx->ply->player_y, mlx->ply->player_x, 0xF00000);
 	return (1);
 }
 
@@ -148,6 +147,7 @@ int	keyhook(int key, t_mlx *mlx)
 	double new_x;
     double new_y;
 
+	render_minimap(mlx);
 	if (key == 65307) // ECHAP
 	{
 		mlx_clear_window(mlx->ptr, mlx->win);
@@ -194,8 +194,7 @@ int	keyhook(int key, t_mlx *mlx)
 			mlx->ply->dir_angle += 2 * PI;
 		}
 	}
-	render_minimap(mlx);
-	draw_fov_ray(mlx); 
+	//draw_fov_ray(mlx); 
 	return (0);
 }
 
@@ -203,8 +202,8 @@ int	keyhook(int key, t_mlx *mlx)
 
 int	ft_mlx_init(t_mlx *mlx)
 {
-	mlx->ply->player_x = mlx->map->p_x + 0.5; // init pos player dans struct ply
-	mlx->ply->player_y = mlx->map->p_y + 0.5; // init pos player dans struct ply
+	mlx->ply->player_x = mlx->map->p_x; // init pos player dans struct ply
+	mlx->ply->player_y = mlx->map->p_y; // init pos player dans struct ply
 	mlx->ptr = mlx_init();
 	mlx->win = mlx_new_window(mlx->ptr, 1080, 720, "Cub3D");
 	mlx_hook(mlx->win, 2, 1L << 0, keyhook, mlx);
