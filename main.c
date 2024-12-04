@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:05:21 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/12/04 15:06:14 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/12/04 17:04:31 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ static void	init_data(t_data_map **data_map)
 	(*data_map)->we_texture = NULL;
 	(*data_map)->ea_texture = NULL;
 	(*data_map)->floor_color = NULL;
+	(*data_map)->f_color = NULL;
 	(*data_map)->ceiling_color = NULL;
+	(*data_map)->c_color = NULL;
 	(*data_map)->map = NULL;
+	(*data_map)->pos = 0;
 }
 
 static void	check_texture_color(t_data_map *data_map)

@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:05:29 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/12/04 15:11:35 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/12/04 17:30:06 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ typedef struct s_data_map
 	char	*we_texture;
 	char	*ea_texture;
 	char	*floor_color;
+	int		*f_color;
 	char	*ceiling_color;
+	int		*c_color;
 	char	**map;
 	double	pos;
 }			t_data_map;
@@ -66,5 +68,8 @@ void		map_is_not_cub(char *str, t_data_map *data_map);
 void		ft_error(char *str, t_data_map *data_map);
 void		ft_putstr_fd(char *s, int fd);
 char		*ft_strdup(const char *s);
+
+/* utils_bis.c */
+int	ft_atoi(const char *nptr, t_data_map *data_map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:48:25 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/06/26 13:46:10 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/12/04 17:59:48 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,45 @@ static void	is_f_color(char *str, int i, t_data_map *data_map)
 	}
 }
 
+static void print_colors(t_data_map *data_map, int choice)
+{
+	int i;
+
+	i = 0;
+	if (choice == 1)
+	{
+		while (data_map->f_color[i] >= 0)
+		{
+			printf("%d ", data_map->f_color[i]);
+			i++;
+		}
+	}
+	if (choice == 2)
+	{
+		while (data_map->c_color[i] >= 0)
+		{
+			printf("%d ", data_map->c_color[i]);
+			i++;
+		}
+	}
+}
+
+static void	parse_colors(t_data_map **data_map)
+{
+	(*data_map)->f_color = malloc(sizeof(int) * 4);
+	(*data_map)->f_color[0] = ft_atoi((*data_map)->floor_color, (*data_map));
+	(*data_map)->f_color[1] = ft_atoi((*data_map)->floor_color, (*data_map));
+	(*data_map)->f_color[2] = ft_atoi((*data_map)->floor_color, (*data_map));
+	(*data_map)->f_color[3] = -1;
+	print_colors(*data_map, 1);
+	(*data_map)->c_color = malloc(sizeof(int) * 4);
+	(*data_map)->c_color[0] = ft_atoi((*data_map)->ceiling_color, (*data_map));
+	(*data_map)->c_color[1] = ft_atoi((*data_map)->ceiling_color, (*data_map));
+	(*data_map)->c_color[2] = ft_atoi((*data_map)->ceiling_color, (*data_map));
+	(*data_map)->c_color[3] = -1;
+	print_colors(*data_map, 2);
+}
+
 void	init_color(char *str, t_data_map *data_map)
 {
 	int	i;
@@ -67,4 +106,5 @@ void	init_color(char *str, t_data_map *data_map)
 	}
 	if (!data_map->floor_color || !data_map->ceiling_color)
 		ft_error("Double in color\n", data_map);
+	parse_colors(&data_map);
 }
