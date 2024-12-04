@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:59:23 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/06/26 14:08:08 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/12/04 15:09:41 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@ void	check_map_char(t_data_map *data_map)
 				&& data_map->map[j][i] != 'W' && data_map->map[j][i] != 'E'
 				&& data_map->map[j][i] != ' ' && data_map->map[j][i] != '\n')
 				ft_error("Invalid map\n", data_map);
+			else if (data_map->map[j][i] == 'N')
+				data_map->pos = pi/2;
+			else if (data_map->map[j][i] == 'S')
+				data_map->pos = 3*pi/2;
+			else if (data_map->map[j][i] == 'E')
+				data_map->pos = 0;
+			else if (data_map->map[j][i] == 'W')
+				data_map->pos = pi;
 			i++;
 		}
 		i = 0;

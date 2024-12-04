@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:05:29 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/06/26 14:08:28 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/12/04 15:11:35 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <stdio.h>
+
+# define pi 3.14159265358
 
 /* structs */
 typedef struct s_data_map
@@ -33,6 +35,7 @@ typedef struct s_data_map
 	char	*floor_color;
 	char	*ceiling_color;
 	char	**map;
+	double	pos;
 }			t_data_map;
 
 /* parse_map_bis.c */
