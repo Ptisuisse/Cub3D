@@ -21,45 +21,13 @@
 # include <stdbool.h>
 # include <stdio.h>
 
-#define WALL_SCALE 32
-#define MAP_WIDTH 24  // Add your actual map width
-#define MAP_HEIGHT 24 
-#define FOV (PI/3)
 # define PI 3.14159265358979323846
-#define WINDOW_WIDTH 1080
-#define WINDOW_HEIGHT 720
-#define FOV (PI/3)
-#define WINDOW_WIDTH 1080
-#define WINDOW_HEIGHT 720
-#define FOV (PI/3)
-#define RAY_COUNT WINDOW_WIDTH
-#define WALL_COLOR 0x808080    // Grey for walls
-#define SKY_COLOR 0x87CEEB     // Light blue for sky
-#define FLOOR_COLOR 0x8B4513   // Brown for floor
-#define SCALE_FACTOR 32
-/*MLX*/
-
-typedef struct mlx
-{
-	int		img_height;
-	int		img_width;
-	void	*ptr;
-	void	*mlx;
-	void	*img;
-	void	*win;
-	void	*img_player;
-	void	*img_floor;
-	void	*img_coll;
-	void	*img_exit;
-}			t_mlx;
 
 /* structs */
 typedef struct s_data_map
 {
-	int		width;
-	int		height;
+
 	bool	minimap;
-	int		angle;
 	int		fd;
 	char	*line;
 	bool	texture_color;
@@ -72,11 +40,37 @@ typedef struct s_data_map
 	char	**map;
 	int		x;
 	int		y;
+	int		p_x;
+	int		p_y;
+}			t_data_map;
+
+/*Player*/
+typedef	struct s_ply
+{
 	double		player_x;
 	double		player_y;
 	double		dir_angle;
-	t_mlx	*mlx;
-}			t_data_map;
+	int test;
+}	t_ply;
+
+
+/*MLX*/
+typedef struct s_mlx
+{
+	t_data_map	*map;
+	t_ply	*ply;
+	int		img_height;
+	int		img_width;
+	void	*ptr;
+	void	*mlx;
+	void	*img;
+	void	*win;
+	void	*img_player;
+	void	*img_floor;
+	void	*img_coll;
+	void	*img_exit;
+}			t_mlx;
+
 
 /* parse_map_bis.c */
 
@@ -109,7 +103,7 @@ void		ft_putstr_fd(char *s, int fd);
 char		*ft_strdup(const char *s);
 
 /*Mlx_init.c*/
-int			ft_mlx_init(t_data_map *map);
+int			ft_mlx_init(t_mlx *mlx);
 void		size_of_map(t_data_map *map);
 
 #endif
