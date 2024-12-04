@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:05:29 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/06/26 14:08:28 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:58:14 by lvan-slu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,22 @@
 # include <stdbool.h>
 # include <stdio.h>
 
+#define WALL_SCALE 32
+#define MAP_WIDTH 24  // Add your actual map width
+#define MAP_HEIGHT 24 
+#define FOV (PI/3)
+# define PI 3.14159265358979323846
+#define WINDOW_WIDTH 1080
+#define WINDOW_HEIGHT 720
+#define FOV (PI/3)
+#define WINDOW_WIDTH 1080
+#define WINDOW_HEIGHT 720
+#define FOV (PI/3)
+#define RAY_COUNT WINDOW_WIDTH
+#define WALL_COLOR 0x808080    // Grey for walls
+#define SKY_COLOR 0x87CEEB     // Light blue for sky
+#define FLOOR_COLOR 0x8B4513   // Brown for floor
+#define SCALE_FACTOR 32
 /*MLX*/
 
 typedef struct mlx
@@ -40,6 +56,8 @@ typedef struct mlx
 /* structs */
 typedef struct s_data_map
 {
+	int		width;
+	int		height;
 	bool	minimap;
 	int		angle;
 	int		fd;
@@ -54,8 +72,9 @@ typedef struct s_data_map
 	char	**map;
 	int		x;
 	int		y;
-	int		player_x;
-	int		player_y;
+	double		player_x;
+	double		player_y;
+	double		dir_angle;
 	t_mlx	*mlx;
 }			t_data_map;
 

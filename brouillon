@@ -1,0 +1,188 @@
+/*creation / suppression du rayon*/
+void	clear_fov_ray(t_data_map *map)
+{
+	int	i;
+	int save_y;
+	int save_x;
+
+	save_x = map->player_x;
+	save_y = map->player_y;
+	i = 0;
+	while (i < 10)
+	{
+		if (map->map[save_y - 1][save_x] == '1')
+			mlx_pixel_put(map->mlx->ptr, map->mlx->win, save_x * 10 + 5,
+				save_y * 10 - i, 0x87CEEB);
+		else if (map->map[save_y - 1][save_x] == '0')
+			mlx_pixel_put(map->mlx->ptr, map->mlx->win, save_x * 10 + 5,
+				save_y * 10 - i, 0xFFFFFF);
+		i++;
+	}
+}
+
+void	draw_fov_ray(t_data_map *map)
+{
+    // Commencer au centre de la case du joueur
+    double ray_x = map->player_x + 0.5;  // +0.5 pour être au centre de la case
+    double ray_y = map->player_y + 0.5;
+    
+    double dx = cos(map->dir_angle);
+    double dy = sin(map->dir_angle);
+    
+    // Dessiner le rayon point par point
+    for (int i = 0; i < 53; i++)
+    {
+        mlx_pixel_put(map->mlx->ptr, map->mlx->win, 
+                     ray_x * 10, ray_y * 10, 0xF00000);
+        ray_x += dx * 0.1;
+        ray_y += dy * 0.1;
+    }
+}
+
+
+int	keyhook(int key, void *data)
+{
+	t_data_map	*map;
+
+	int save_x;
+	int save_y;
+	map = (t_data_map *)data;
+	save_x = map->player_x;
+	save_y = map->player_y;
+	map = (t_data_map *)data;
+	if (key == 65307)
+		mlx_destroy_window(map->mlx->ptr, map->mlx->win);
+	if (key == 109)
+	{
+		if (map->minimap == false)
+			render_minimap_test(map);
+		else
+		{
+			mlx_clear_window(map->mlx->ptr, map->mlx->win);
+			map->minimap = false;
+		}
+	}
+	if (map->minimap == true)
+	{
+		if (key == 65364)
+		{
+			if (map->map[save_y + 1][save_x] != '1')
+			{
+				map->map[save_y][save_x] = '0';
+				ft_put_pixel(map, map->player_y, map->player_x, 0xFFFFFF);
+				ft_put_pixel(map, map->player_y + 1, map->player_x, 0xF00000);
+				map->player_y += 1;
+				map->map[save_y][save_x] = 'N';
+				map->player_y += 1;
+			}
+			draw_fov_ray(map);
+		}
+		if (key == 65362)
+		{
+			if (map->map[save_y - 1][save_x] != '1')
+			{
+				map->map[save_y][save_x] = '0';
+				ft_put_pixel(map, save_y, save_x, 0xFFFFFF);
+				ft_put_pixel(map, save_y - 1, save_x, 0xF00000);
+				save_y -= 1;
+				map->map[save_y][save_x] = 'N';
+				map->player_y -= 1;
+			}
+			draw_fov_ray(map);
+		}
+		if (key == 65361) // gauche
+		{
+			double rotation_speed = 0.1;  // Vitesse de rotation en radians
+       		map->dir_angle -= rotation_speed;
+    
+    // Normaliser l'angle entre 0 et 2*PI
+    		if (map->dir_angle < 0)
+        		map->dir_angle += 2 * M_PI;
+    		if (map->dir_angle > 2 * M_PI)
+				map->dir_angle -= 2 * M_PI;
+			draw_fov_ray(map);
+		}
+		// if (key == 65363) // droite
+		// {
+		// 	map->player_angle += 0,1;
+		// 	draw_fov_ray(map);
+		// }
+	}
+	return (0);
+}
+void	draw_fov_ray(t_data_map *map);
+
+///*Gestion minimap murs et sols*/
+int	render_minimap_test(t_data_map *map)
+{
+	int	y;
+	int	x;
+
+	x = 0;
+	y = 0;
+	while (map->map[y])
+	{
+		x = 0;
+		while (map->map[y][x])
+		{
+			if (map->map[y][x] == '1')
+				ft_put_pixel(map, y, x, 0x87CEEB);
+			else if (map->map[y][x] == '0')
+				ft_put_pixel(map, y, x, 0xFFFFFF);
+			else if (map->map[y][x] == 'N')
+			{
+				map->player_x = x + 0.5;
+				map->player_y = y + 0.5;
+				//---------------> changer emplacement init joueur
+				ft_put_pixel(map, y, x, 0xF00000);
+			}
+			x++;
+		}
+		y++;
+	}
+	map->minimap = true;
+	draw_fov_ray(map);
+	return (1);
+}
+
+/*creation / suppression du rayon*/
+void	clear_fov_ray(t_data_map *map)
+{
+	int	i;
+	int save_y;
+	int save_x;
+
+	save_x = map->player_x;
+	save_y = map->player_y;
+	i = 0;
+	while (i < 10)
+	{
+		if (map->map[save_y - 1][save_x] == '1')
+			mlx_pixel_put(map->mlx->ptr, map->mlx->win, save_x * 10 + 5,
+				save_y * 10 - i, 0x87CEEB);
+		else if (map->map[save_y - 1][save_x] == '0')
+			mlx_pixel_put(map->mlx->ptr, map->mlx->win, save_x * 10 + 5,
+				save_y * 10 - i, 0xFFFFFF);
+		i++;
+	}
+}
+
+void	draw_fov_ray(t_data_map *map)
+{
+    // Commencer au centre de la case du joueur
+    double ray_x = map->player_x + 0.5;  // +0.5 pour être au centre de la case
+    double ray_y = map->player_y + 0.5;
+    
+    double dx = cos(map->dir_angle);
+    double dy = sin(map->dir_angle);
+    
+    // Dessiner le rayon point par point
+    for (int i = 0; i < 53; i++)
+    {
+        mlx_pixel_put(map->mlx->ptr, map->mlx->win, 
+                     ray_x * 10, ray_y * 10, 0xF00000);
+        ray_x += dx * 0.1;
+        ray_y += dy * 0.1;
+    }
+}
+

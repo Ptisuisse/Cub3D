@@ -30,6 +30,9 @@ static void	init_data(t_data_map **data_map)
 	(*data_map)->ceiling_color = NULL;
 	(*data_map)->map = NULL;
 	(*data_map)->minimap = false;
+	(*data_map)->dir_angle = -(PI / 2);
+	(*data_map)->player_x = 0.0;
+	(*data_map)->player_y = 0.0;
 }
 
 static void	check_texture_color(t_data_map *data_map)
