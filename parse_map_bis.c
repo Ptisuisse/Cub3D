@@ -6,29 +6,22 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:59:23 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/12/04 15:09:41 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/12/04 19:40:52 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	map_to_data(t_data_map *data_map)
+static void define_pos(t_data_map *data_map, int i, int j)
 {
-	static int	j = 0;
-
-	if (!data_map->map)
-	{
-		data_map->map = malloc(sizeof(char *) * 100);
-		if (!data_map->map)
-			return ;
-	}
-	if (!data_map->line)
-	{
-		data_map->map[j] = NULL;
-		return ;
-	}
-	data_map->map[j] = ft_strdup(data_map->line);
-	j++;
+	if (data_map->map[j][i] == 'N')
+		data_map->pos = pi/2;
+	else if (data_map->map[j][i] == 'S')
+		data_map->pos = 3*pi/2;
+	else if (data_map->map[j][i] == 'E')
+		data_map->pos = 0;
+	else if (data_map->map[j][i] == 'W')
+		data_map->pos = pi;
 }
 
 void	check_map_char(t_data_map *data_map)
@@ -47,14 +40,7 @@ void	check_map_char(t_data_map *data_map)
 				&& data_map->map[j][i] != 'W' && data_map->map[j][i] != 'E'
 				&& data_map->map[j][i] != ' ' && data_map->map[j][i] != '\n')
 				ft_error("Invalid map\n", data_map);
-			else if (data_map->map[j][i] == 'N')
-				data_map->pos = pi/2;
-			else if (data_map->map[j][i] == 'S')
-				data_map->pos = 3*pi/2;
-			else if (data_map->map[j][i] == 'E')
-				data_map->pos = 0;
-			else if (data_map->map[j][i] == 'W')
-				data_map->pos = pi;
+			define_pos(data_map, i, j);
 			i++;
 		}
 		i = 0;

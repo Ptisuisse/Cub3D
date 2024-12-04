@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:05:21 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/12/04 18:30:20 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/12/04 19:37:42 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,24 +72,11 @@ static void	check_map(char **argv, t_data_map *data_map)
 int	main(int argc, char **argv)
 {
 	t_data_map	*data_map;
-	int			i;
 
 	data_map = NULL;
 	init_data(&data_map);
 	check_argc(argc, data_map);
 	check_map(argv, data_map);
-	printf("%s\n", data_map->no_texture);
-	printf("%s\n", data_map->so_texture);
-	printf("%s\n", data_map->we_texture);
-	printf("%s\n", data_map->ea_texture);
-	printf("%s\n", data_map->floor_color);
-	printf("%s\n", data_map->ceiling_color);
-	i = 0;
-	while (data_map->map[i])
-	{
-		printf("%s\n", data_map->map[i]);
-		i++;
-	}
 	ft_error(NULL, data_map);
 	return (0);
 }

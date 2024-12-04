@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:05:29 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/12/04 17:30:06 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/12/04 19:36:05 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ typedef struct s_data_map
 	double	pos;
 }			t_data_map;
 
+/* parse_map_ter.c */
+void	map_to_data(t_data_map *data_map);
+
 /* parse_map_bis.c */
 void	map_to_data(t_data_map *data_map);
 
@@ -52,6 +55,10 @@ void		map_exist(char *str, t_data_map *data_map);
 
 /* init_color.c */
 void		init_color(char *str, t_data_map *data_map);
+
+/* init_color_bis.c */
+void f_to_hexa(t_data_map **data_map);
+void c_to_hexa(t_data_map **data_map);
 
 /* init_texture.c */
 void		init_texture(char *str, t_data_map *data_map);

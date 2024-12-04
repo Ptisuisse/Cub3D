@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:07:58 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/12/04 18:03:06 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/12/04 19:29:47 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ void	ft_error(char *str, t_data_map *data_map)
 	i = 0;
 	while (data_map->map && data_map->map[i])
 	{
-		free(data_map->map[i]);
-		i++;
+		free(data_map->map[i++]);
 	}
 	free(data_map);
 	exit(EXIT_FAILURE);
