@@ -11,9 +11,9 @@ C 225,130,0
 
 
          NO ./textures/texture_nord.png
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+SO ./textures/texture_sud.png
+WE ./textures/texture_ouest.png
+EA ./textures/texture_est.png
 
 
         1111111111111111111111111

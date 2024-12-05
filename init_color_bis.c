@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 19:35:12 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/12/04 19:46:21 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/12/05 11:48:17 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void    f_to_hexa(t_data_map **data_map)
 	hexa_nbr[j] = '\0';
 	free((*data_map)->floor_color);
 	(*data_map)->floor_color = ft_strdup(hexa_nbr);
+	free(hexa_nbr);
 }
 
 void c_to_hexa(t_data_map **data_map)
@@ -60,4 +61,5 @@ void c_to_hexa(t_data_map **data_map)
 	hexa_nbr[j] = '\0';
 	free((*data_map)->ceiling_color);
 	(*data_map)->ceiling_color = ft_strdup(hexa_nbr);
+	free(hexa_nbr);
 }

@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:14:54 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/12/05 11:33:40 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/12/05 11:46:41 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static void	is_ea_texture(char *str, int i, t_data_map *data_map)
 		i += 2;
 		while (str[i] && str[i] == ' ')
 			i++;
-		if (str[i] == '.' && str[i + 1] == '/')
-			data_map->ea_texture = ft_strdup(&str[i]);
+		if (!ft_strncmp(&str[i], "./textures/", 11))
+			data_map->ea_texture = ft_strdup_newline(&str[i]);
 		else
 			ft_error("Can't read texture\n", data_map);
 	}
@@ -37,8 +37,8 @@ static void	is_we_texture(char *str, int i, t_data_map *data_map)
 		i += 2;
 		while (str[i] && str[i] == ' ')
 			i++;
-		if (str[i] == '.' && str[i + 1] == '/')
-			data_map->we_texture = ft_strdup(&str[i]);
+		if (!ft_strncmp(&str[i], "./textures/", 11))
+			data_map->we_texture = ft_strdup_newline(&str[i]);
 		else
 			ft_error("Can't read texture\n", data_map);
 	}
@@ -53,8 +53,8 @@ static void	is_so_texture(char *str, int i, t_data_map *data_map)
 		i += 2;
 		while (str[i] && str[i] == ' ')
 			i++;
-		if (str[i] == '.' && str[i + 1] == '/')
-			data_map->so_texture = ft_strdup(&str[i]);
+		if (!ft_strncmp(&str[i], "./textures/", 11))
+			data_map->so_texture = ft_strdup_newline(&str[i]);
 		else
 			ft_error("Can't read texture\n", data_map);
 	}
@@ -69,7 +69,7 @@ static void	is_no_texture(char *str, int i, t_data_map *data_map)
 		i += 2;
 		while (str[i] && str[i] == ' ')
 			i++;
-		if (str[i] == '.' && str[i + 1] == '/')
+		if (!ft_strncmp(&str[i], "./textures/", 11))
 			data_map->no_texture = ft_strdup_newline(&str[i]);
 		else
 			ft_error("Can't read texture\n", data_map);
