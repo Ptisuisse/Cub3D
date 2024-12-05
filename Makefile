@@ -6,7 +6,7 @@
 #    By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 12:03:43 by dpoltura          #+#    #+#              #
-#    Updated: 2024/12/04 19:36:17 by dpoltura         ###   ########.fr        #
+#    Updated: 2024/12/05 11:11:37 by dpoltura         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRCS =  main.c \
 		utils_bis.c \
 		parse.c \
 		init_texture.c \
+		init_texture_bis.c \
 		init_color.c \
 		init_color_bis.c \
 		parse_map.c \

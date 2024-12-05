@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:05:29 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/12/04 19:36:05 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/12/05 11:33:24 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ void c_to_hexa(t_data_map **data_map);
 
 /* init_texture.c */
 void		init_texture(char *str, t_data_map *data_map);
+
+/* init_texture_bis.c */
+char	*ft_strdup_newline(const char *s);
+void    check_texture_path(t_data_map *data_map);
 
 /* parse.c */
 void		check_color(t_data_map *data_map);

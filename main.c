@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:05:21 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/12/04 19:37:42 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/12/05 11:34:26 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	main(int argc, char **argv)
 	init_data(&data_map);
 	check_argc(argc, data_map);
 	check_map(argv, data_map);
+	check_texture_path(data_map);
 	ft_error(NULL, data_map);
 	return (0);
 }
