@@ -6,7 +6,7 @@
 #    By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 12:03:43 by dpoltura          #+#    #+#              #
-#    Updated: 2024/06/26 13:59:41 by dpoltura         ###   ########.fr        #
+#    Updated: 2024/12/05 11:11:37 by dpoltura         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,14 +14,19 @@ CC = cc -Wall -Wextra -Werror -g
 
 SRCS =  main.c \
 		utils.c \
+		utils_bis.c \
 		parse.c \
 		init_texture.c \
+		init_texture_bis.c \
 		init_color.c \
+		init_color_bis.c \
 		parse_map.c \
 		parse_map_bis.c \
+    main.c \
 		mlx_init.c \
 		mini_map.c \
 		raycasting.c \
+		parse_map_ter.c
 
 GNL_SRCS =	get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c

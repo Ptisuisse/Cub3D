@@ -26,6 +26,7 @@
 # define HEIGHT 720
 # define WIDTH 1280
 # define TILE_SIZE 64
+# define pi 3.14159265358
 
 /* structs */
 typedef struct s_data_map
@@ -93,6 +94,9 @@ void			draw_fov_ray(t_mlx *mlx);
 int				render_minimap(t_mlx *mlx);
 void			ft_put_pixel(t_mlx *mlx, int x, int y, int color);
 void			ft_put_pixel_player(t_mlx *mlx, double y, double x, int color);
+
+/* parse_map_ter.c */
+void	map_to_data(t_data_map *data_map);
 /* parse_map_bis.c */
 
 void			map_to_data(t_data_map *data_map);
@@ -107,8 +111,17 @@ void			map_exist(char *str, t_data_map *data_map);
 /* init_color.c */
 void			init_color(char *str, t_data_map *data_map);
 
+/* init_color_bis.c */
+void f_to_hexa(t_data_map **data_map);
+void c_to_hexa(t_data_map **data_map);
+
 /* init_texture.c */
 void			init_texture(char *str, t_data_map *data_map);
+
+/* init_texture_bis.c */
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strdup_newline(const char *s);
+void    check_texture_path(t_data_map *data_map);
 
 /* parse.c */
 void			check_color(t_data_map *data_map);
@@ -126,5 +139,8 @@ char			*ft_strdup(const char *s);
 /*Mlx_init.c*/
 int				ft_mlx_init(t_mlx *mlx);
 void			size_of_map(t_data_map *map);
+
+/* utils_bis.c */
+int	ft_atoi(const char *nptr, t_data_map *data_map);
 
 #endif
