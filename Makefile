@@ -20,6 +20,8 @@ SRCS =  main.c \
 		parse_map.c \
 		parse_map_bis.c \
 		mlx_init.c \
+		mini_map.c \
+		raycasting.c \
 
 GNL_SRCS =	get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c

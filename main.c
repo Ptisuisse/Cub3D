@@ -15,7 +15,7 @@
 void	init_player(t_ply **ply)
 {
 	(*ply) = malloc(sizeof(t_ply));
-	(*ply)->dir_angle = -(PI / 2);
+	(*ply)->dir_angle = 3 * PI / 2;
 	(*ply)->player_x = 0.0;
 	(*ply)->player_y = 0.0;
 	(*ply)->test = 0;
