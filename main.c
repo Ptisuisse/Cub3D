@@ -12,12 +12,25 @@
 
 #include "cub3d.h"
 
+void	init_player(t_ply **ply)
+{
+	(*ply) = malloc(sizeof(t_ply));
+	(*ply)->dir_angle = 3 * PI / 2;
+	(*ply)->player_x = 0.0;
+	(*ply)->player_y = 0.0;
+	(*ply)->test = 0;
+}
+
 static void	init_data(t_data_map **data_map)
 {
 	(*data_map) = malloc(sizeof(t_data_map));
 	if (!(*data_map))
 		ft_error("Malloc error\n", (*data_map));
 	(*data_map)->fd = 0;
+	(*data_map)->x = 0;
+	(*data_map)->y = 0;
+	(*data_map)->p_x = 0;
+	(*data_map)->p_y = 0;
 	(*data_map)->line = NULL;
 	(*data_map)->texture_color = false;
 	(*data_map)->no_texture = NULL;
@@ -29,6 +42,7 @@ static void	init_data(t_data_map **data_map)
 	(*data_map)->ceiling_color = NULL;
 	(*data_map)->c_color = NULL;
 	(*data_map)->map = NULL;
+	(*data_map)->minimap = false;
 	(*data_map)->pos = 0;
 }
 
@@ -71,12 +85,21 @@ static void	check_map(char **argv, t_data_map *data_map)
 
 int	main(int argc, char **argv)
 {
+	t_ply		*ply;
+	t_mlx		*mlx;
 	t_data_map	*data_map;
 
+	mlx = malloc(sizeof(t_mlx));
 	data_map = NULL;
+	ply = NULL;
 	init_data(&data_map);
+	init_player(&ply);
 	check_argc(argc, data_map);
 	check_map(argv, data_map);
+	mlx->map = data_map;
+	mlx->ply = ply;
+	size_of_map(data_map);
+	ft_mlx_init(mlx);
 	check_texture_path(data_map);
 	ft_error(NULL, data_map);
 	return (0);
