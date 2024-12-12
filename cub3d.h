@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:05:29 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/11/27 15:58:14 by lvan-slu         ###   ########.fr       */
+/*   Updated: 2024/12/12 15:00:43 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,11 @@ typedef struct s_data_map
 	char		*we_texture;
 	char		*ea_texture;
 	char		*floor_color;
+	char		*f_color;
 	char		*ceiling_color;
+	char		*c_color;
 	char		**map;
+	double		pos;
 	int			x;
 	int			y;
 	int			p_x;
