@@ -15,18 +15,18 @@ CC = cc -Wall -Wextra -Werror -g
 SRCS =  main.c \
 		utils.c \
 		utils_bis.c \
-		parse.c \
-		init_texture.c \
-		init_texture_bis.c \
-		init_color.c \
-		init_color_bis.c \
-		parse_map.c \
-		parse_map_bis.c \
-    main.c \
-		mlx_init.c \
-		mini_map.c \
-		raycasting.c \
-		parse_map_ter.c
+		./Parsing/parse.c \
+		./Parsing/init_texture.c \
+		./Parsing/init_texture_bis.c \
+		./Parsing/init_color.c \
+		./Parsing/init_color_bis.c \
+		./Parsing/parse_map.c \
+		./Parsing/parse_map_bis.c \
+		./Parsing/parse_map_ter.c \
+		./Exec/mlx_init.c \
+		./Exec/mini_map.c \
+		./Exec/raycasting.c \
+		./Exec/render_wall.c \
 
 GNL_SRCS =	get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c

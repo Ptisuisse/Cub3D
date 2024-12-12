@@ -23,10 +23,11 @@
 
 # define PI 3.14159265358979323846
 # define FOV 60
-# define HEIGHT 720
-# define WIDTH 1280
-# define TILE_SIZE 64
-# define pi 3.14159265358
+# define HEIGHT 1000
+# define WIDTH 1900
+# define TILE_SIZE 30
+# define ROTATION_SPEED 0.045
+# define PLAYER_SPEED 4
 
 /* structs */
 typedef struct s_data_map
@@ -40,6 +41,9 @@ typedef struct s_data_map
 	char		*we_texture;
 	char		*ea_texture;
 	char		*floor_color;
+	char		*f_color;
+	char		*c_color;
+	double		pos;
 	char		*ceiling_color;
 	char		**map;
 	int			x;
@@ -54,10 +58,10 @@ typedef struct s_ply
 	double		player_x;
 	double		player_y;
 	double		dir_angle;
-	int			test;
-	int		flag;
-	double	ray_ngl;
-	double	distance;
+	int			flag;
+	double		ray_ngl;
+	double		distance;
+	float		fov;
 }				t_ply;
 
 /*MLX*/
@@ -79,16 +83,19 @@ typedef struct s_mlx
 
 /*raycasting.c*/
 void			init_raycasting(t_mlx *mlx);
-float get_h_inter(t_mlx *mlx, float angle);
-float get_v_hinter(t_mlx *mlx, float angle);
-float	nor_angle(float angle);
-void	render_wall(t_mlx *mlx, int ray);
-void	draw_wall(t_mlx *mlx, int ray, int t_pix, int b_pix);
-int	get_color(t_mlx *mlx, int flag);
-void	draw_floor_ceiling(t_mlx *mlx, int ray, int t_pix, int b_pix);
-void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+float			get_h_inter(t_mlx *mlx, float angle);
+float			get_v_inter(t_mlx *mlx, float angle);
+int				wall_hit(float x, float y, t_mlx *mlx);
+void			draw_floor_ceiling(t_mlx *mlx, int ray, int t_pix, int b_pix);
+int				inter_check(float angle, float *inter, float *step,
+					int is_horizon);
+/*render_wall.c*/
+void			draw_wall(t_mlx *mlx, int ray, int t_pix, int b_pix);
+void			render_wall(t_mlx *mlx, int ray);
+float			nor_angle(float angle);
+int				get_color(t_mlx *mlx, int flag);
+void			my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 
-int inter_check(float angle, float *inter, float *step, int is_horizon);
 /*mini_map.c*/
 void			draw_fov_ray(t_mlx *mlx);
 int				render_minimap(t_mlx *mlx);
@@ -96,7 +103,7 @@ void			ft_put_pixel(t_mlx *mlx, int x, int y, int color);
 void			ft_put_pixel_player(t_mlx *mlx, double y, double x, int color);
 
 /* parse_map_ter.c */
-void	map_to_data(t_data_map *data_map);
+void			map_to_data(t_data_map *data_map);
 /* parse_map_bis.c */
 
 void			map_to_data(t_data_map *data_map);
@@ -112,16 +119,16 @@ void			map_exist(char *str, t_data_map *data_map);
 void			init_color(char *str, t_data_map *data_map);
 
 /* init_color_bis.c */
-void f_to_hexa(t_data_map **data_map);
-void c_to_hexa(t_data_map **data_map);
+void			f_to_hexa(t_data_map **data_map);
+void			c_to_hexa(t_data_map **data_map);
 
 /* init_texture.c */
 void			init_texture(char *str, t_data_map *data_map);
 
 /* init_texture_bis.c */
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_strdup_newline(const char *s);
-void    check_texture_path(t_data_map *data_map);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+char			*ft_strdup_newline(const char *s);
+void			check_texture_path(t_data_map *data_map);
 
 /* parse.c */
 void			check_color(t_data_map *data_map);
@@ -141,6 +148,6 @@ int				ft_mlx_init(t_mlx *mlx);
 void			size_of_map(t_data_map *map);
 
 /* utils_bis.c */
-int	ft_atoi(const char *nptr, t_data_map *data_map);
+int				ft_atoi(const char *nptr, t_data_map *data_map);
 
 #endif

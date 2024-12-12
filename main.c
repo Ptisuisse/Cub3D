@@ -18,7 +18,8 @@ void	init_player(t_ply **ply)
 	(*ply)->dir_angle = 3 * PI / 2;
 	(*ply)->player_x = 0.0;
 	(*ply)->player_y = 0.0;
-	(*ply)->test = 0;
+	(*ply)->ray_ngl = PI;
+	(*ply)->fov = (FOV * PI) / 180;
 }
 
 static void	init_data(t_data_map **data_map)
@@ -96,11 +97,11 @@ int	main(int argc, char **argv)
 	init_player(&ply);
 	check_argc(argc, data_map);
 	check_map(argv, data_map);
+	size_of_map(data_map);
+	check_texture_path(data_map);
 	mlx->map = data_map;
 	mlx->ply = ply;
-	size_of_map(data_map);
 	ft_mlx_init(mlx);
-	check_texture_path(data_map);
 	ft_error(NULL, data_map);
 	return (0);
 }
